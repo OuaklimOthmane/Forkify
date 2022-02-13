@@ -1,0 +1,28 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipes app",
+  "dependencies": {
+    "core-js": "^3.21.0",
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "parcel": "^2.3.1",
+    "sass": "^1.49.7"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OuaklimOthmane/Forkify.git"
+  },
+  "author": "Othmane Ouaklim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OuaklimOthmane/Forkify/issues"
+  },
+  "homepage": "https://github.com/OuaklimOthmane/Forkify#readme"
+}
