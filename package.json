@@ -8,12 +8,14 @@
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
+    "node-sass": "^7.0.1",
     "parcel": "^2.3.1",
     "sass": "^1.49.7"
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir ./dist"
+    "build": "parcel build index.html --dist-dir ./dist",
+    "watch:sass": "node-sass src/sass/main.scss src/css/style.css -w"
   },
   "repository": {
     "type": "git",
