@@ -1,5 +1,7 @@
-// import icons from "../img/icons.svg"; //! parcel 1
-// import icons from "url:../img/icons.svg"; //! parcel 2
+// import icons from "../../img/icons.svg"; //! parcel 1
+// import icons from "url:../../img/icons.svg"; //! parcel 2
+
+// import { Fraction } from "../../../../node_modules/fractional";
 
 class RecipeView {
   #parentElement = document.querySelector(".recipe");
@@ -96,7 +98,9 @@ class RecipeView {
                 <svg class="recipe__icon">
                 <use href="src/img/icons.svg#icon-check"></use>
                 </svg>
-                <div class="recipe__quantity">${ingredient.quantity}</div>
+                <div class="recipe__quantity">${
+                  ingredient.quantity ? ingredient.quantity : ""
+                }</div>
                 <div class="recipe__description">
                 <span class="recipe__unit">${ingredient.unit}</span>
                 ${ingredient.description}
@@ -142,3 +146,8 @@ export default new RecipeView();
 //? But in the second "parcel 2", it works almost the same way. But then for all assets static files that are not programming files. Thus, for any image, video or similar audio file, we need to write "url:" then the file path.
 // import icons from "url:../img/icons.svg";
 //?  So wherever we have this ancient path, now we just want to replace it with the "icons".
+
+//? To get a fractional number in the quantity of ingredients we can import the "fractional" package by :
+// import { Fraction } from "../../../../node_modules/fractional";
+//? then we set the variable to :
+//? ${new Fraction(ingredient.quantity).toString()}
