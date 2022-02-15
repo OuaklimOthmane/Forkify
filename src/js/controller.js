@@ -20,7 +20,6 @@ const controlRecipes = async function () {
   try {
     //* Get the id of the recipe from the url :
     const id = window.location.hash.slice(1);
-    console.log(id);
 
     if (!id) return;
 
