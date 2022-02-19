@@ -22,6 +22,13 @@ class RecipeView {
     this.#parentElement.innerHTML = "";
   }
 
+  addHandlerRender(handler) {
+    //* Render the recipe when the hash has changed or the page has loaded.
+    ["hashchange", "load"].forEach((event) =>
+      window.addEventListener(event, handler)
+    );
+  }
+
   renderSpinner() {
     const markup = `
       <div class="spinner">
@@ -153,3 +160,5 @@ export default new RecipeView();
 // import { Fraction } from "../../../../node_modules/fractional";
 //? then we set the variable to :
 //? ${new Fraction(ingredient.quantity).toString()}
+
+//? The "hashchange" event is fired when the fragment identifier of the URL has changed (the part of the URL beginning with and following the # symbol)
