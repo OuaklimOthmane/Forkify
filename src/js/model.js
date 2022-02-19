@@ -7,7 +7,7 @@ export const state = {
 
 //* Loading recipe :
 export const loadRecipe = async function (id) {
-  //? This function not gonna return anything, instead it will change the "state" object. so it works 'cause there is a life connection between the exports and the imports, therefore when the "state" object gets updated by "loadRecipe()" then it will also updated in the controller which imports the state.
+  //? This function will not return anything, instead it will change the "state" object. so it works 'cause there is a life connection between the exports and the imports, therefore when the "state" object gets updated by "loadRecipe()" then it will also updated in the controller which imports the state.
 
   try {
     const data = await getJSON(`${API_URL}${id}`);
@@ -25,5 +25,7 @@ export const loadRecipe = async function (id) {
     };
   } catch (error) {
     console.log(`${error} ❗❗`);
+    //? We want to handle the errors in "controller.js" not in "model.js" module,therefore we have to re-throw the error here, then the promise that will return from "loadRecipe()" will be rejected, then we will be able to handle the error in "controlRecipes()", so besically the error propagates down from the async function "loadRecipe()" to the other in "controlRecipes()" by re-throwing the error in the "catch" block.
+    throw err;
   }
 };
