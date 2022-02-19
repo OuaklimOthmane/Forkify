@@ -3,10 +3,7 @@
 
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
-
-const recipeContainer = document.querySelector(".recipe");
-
-//! /////////////////////////////////////
+import searchView from "./views/searchView.js";
 
 const controlRecipes = async function () {
   try {
@@ -34,13 +31,17 @@ const controlRecipes = async function () {
 
 const controlSearchResults = async function () {
   try {
-    await model.loadSearchResults("pizza");
+    //* Get query recipe :
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    //* Load search results :
+    await model.loadSearchResults(query);
     console.log(model.state.search.results);
   } catch (error) {
     console.log(`${error}`);
   }
 };
-controlSearchResults();
 
 //* Handling events using the "Publisher-Subscriber" pattern :
 const init = function () {
