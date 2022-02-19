@@ -26,10 +26,21 @@ const controlRecipes = async function () {
     //* Rendering recipe :
     recipeView.render(model.state.recipe);
   } catch (error) {
+    console.log(`${error} ❗❗❗ `);
     //* Render error message :
     recipeView.renderError();
   }
 };
+
+const controlSearchResults = async function () {
+  try {
+    await model.loadSearchResults("pizza");
+    console.log(model.state.search.results);
+  } catch (error) {
+    console.log(`${error}`);
+  }
+};
+controlSearchResults();
 
 //* Handling events using the "Publisher-Subscriber" pattern :
 const init = function () {
