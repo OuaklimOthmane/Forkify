@@ -1,10 +1,14 @@
-// import icons from "../../img/icons.svg"; //! parcel 1
-// import icons from "url:../../img/icons.svg"; //! parcel 2
+// import icons from "../../img/icons.svg"; // parcel 1
+// import icons from "url:../../img/icons.svg"; // parcel 2
 
 export default class View {
   _data;
 
   render(data) {
+    //* Checking the result data :
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderError();
+
     this._data = data;
 
     //* Clear the markup :
