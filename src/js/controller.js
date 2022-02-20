@@ -28,6 +28,9 @@ const controlRecipes = async function () {
 
     //* Rendering recipe :
     recipeView.render(model.state.recipe);
+
+    //* render new recipe with new servings (TEST):
+    controlServings();
   } catch (error) {
     console.log(`${error} ❗❗❗ `);
 
@@ -68,6 +71,14 @@ const controlPagination = function (goToPage) {
 
   //* Render NEW pagination buttons :
   paginationView.render(model.state.search);
+};
+
+const controlServings = function () {
+  //* Update the recipe servings (in state) :
+  model.updateServings(8);
+
+  //* Update the recipe view  :
+  recipeView.render(model.state.recipe);
 };
 
 //* Handling events using the "Publisher-Subscriber" pattern :
