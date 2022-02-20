@@ -5,6 +5,7 @@ import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
 
 //* Prevent refresh behavior :
 // if (module.hot) {
@@ -52,7 +53,10 @@ const controlSearchResults = async function () {
     // resultsView.render(model.state.search.results);
 
     //* Render search results with pagination :
-    resultsView.render(model.getSearchResultsPage(1));
+    resultsView.render(model.getSearchResultsPage());
+
+    //* Render initial pagination buttons :
+    paginationView.render(model.state.search);
   } catch (error) {
     console.log(`${error}`);
   }
