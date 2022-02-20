@@ -1,4 +1,4 @@
-import { API_URL } from "./config.js";
+import { API_URL, RESULTS_PER_PAGE } from "./config.js";
 import { getJSON } from "./helpers.js";
 
 export const state = {
@@ -6,6 +6,8 @@ export const state = {
   search: {
     query: "",
     results: [],
+    page: 1,
+    resultsPerPage: RESULTS_PER_PAGE,
   },
 };
 
@@ -34,7 +36,9 @@ export const loadRecipe = async function (id) {
   }
 };
 
+//* Loading search results :
 export const loadSearchResults = async function (query) {
+  //? same effect on the "state" object as "loadRecipe()" does.
   try {
     state.search.query = query;
 
@@ -52,4 +56,15 @@ export const loadSearchResults = async function (query) {
     console.log(err);
     throw err;
   }
+};
+
+//* Loading search results with pagination :
+export const getSearchResultsPage = function (page = state.search.page) {
+  //* Save the number of the current page :
+  state.search.page = page;
+
+  const start = (page - 1) * state.search.resultsPerPage;
+  const end = page * state.search.resultsPerPage;
+
+  return state.search.results.slice(start, end);
 };
