@@ -1,5 +1,5 @@
-// import icons from "../../img/icons.svg"; //! parcel 1
-// import icons from "url:../../img/icons.svg"; //! parcel 2
+// import icons from "../../img/icons.svg"; // parcel 1
+// import icons from "url:../../img/icons.svg"; // parcel 2
 
 // import { Fraction } from "../../../../node_modules/fractional";
 
@@ -8,6 +8,17 @@ class RecipeView extends View {
   _parentElement = document.querySelector(".recipe");
   _errorMessage = "could not find that recipe, please try another one !!";
   _message = "";
+
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener("click", function (event) {
+      const btn = event.target.closest(".btn--update-servings");
+      if (!btn) return;
+
+      //* getting number of servings from data attribute in buttons :
+      const { updateTo } = btn.dataset;
+      if (+updateTo > 0) handler(+updateTo);
+    });
+  }
 
   addHandlerRender(handler) {
     //* Render the recipe when the hash has changed or the page has loaded.
@@ -46,12 +57,16 @@ class RecipeView extends View {
             }</span>
             <span class="recipe__info-text">servings</span>
             <div class="recipe__info-buttons">
-            <button class="btn--tiny btn--increase-servings">
+            <button class="btn--tiny btn--update-servings" data-update-to ="${
+              this._data.servings - 1
+            }">
                 <svg>
                 <use href="src/img/icons.svg#icon-minus-circle"></use>
                 </svg>
             </button>
-            <button class="btn--tiny btn--increase-servings">
+            <button class="btn--tiny btn--update-servings" data-update-to ="${
+              this._data.servings + 1
+            }">
                 <svg>
                 <use href="src/img/icons.svg#icon-plus-circle"></use>
                 </svg>
@@ -59,9 +74,7 @@ class RecipeView extends View {
             </div>
         </div>
         <div class="recipe__user-generated">
-            <svg>
-            <use href="src/img/icons.svg#icon-user"></use>
-            </svg>
+            
         </div>
         <button class="btn--round">
             <svg class="">
@@ -108,7 +121,7 @@ class RecipeView extends View {
             <use href="src/img/icons.svg#icon-check"></use>
             </svg>
             <div class="recipe__quantity">${
-              ingredient.quantity ? ingredient.quantity : ""
+              ingredient.quantity ? ingredient.quantity.toFixed(2) : ""
             }</div>
             <div class="recipe__description">
             <span class="recipe__unit">${ingredient.unit}</span>
