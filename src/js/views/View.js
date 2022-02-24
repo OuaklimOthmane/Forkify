@@ -43,9 +43,8 @@ export default class View {
 
       //* Update changed TEXT :
       if (
-        !newElement.isEqualNode(
-          currentElement && newElement.firstChild?.nodeValue.trim() !== ""
-        )
+        !newElement.isEqualNode(currentElement) &&
+        newElement.firstChild?.nodeValue.trim() !== ""
       ) {
         currentElement.textContent = newElement.textContent;
       }
