@@ -37,6 +37,19 @@ export default class View {
     const currentElements = Array.from(
       this._parentElement.querySelectorAll("*")
     );
+
+    newElements.forEach((newElement, i) => {
+      const currentElement = currentElements[i];
+
+      //* Update changed TEXT :
+      if (
+        !newElement.isEqualNode(
+          currentElement && newElement.firstChild?.nodeValue.trim() !== ""
+        )
+      ) {
+        currentElement.textContent = newElement.textContent;
+      }
+    });
   }
 
   _clear() {
