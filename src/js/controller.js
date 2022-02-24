@@ -75,7 +75,9 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   //* Update the recipe view  :
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+  //? the difference between render() & update() is that last will besically only update text and attributes in the DOM without having to re-render the entire view.
+  recipeView.update(model.state.recipe);
 };
 
 //* Handling events using the "Publisher-Subscriber" pattern :
