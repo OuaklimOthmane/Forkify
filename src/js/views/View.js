@@ -22,9 +22,6 @@ export default class View {
 
   update(data) {
     //? Update only text and attributes in the DOM without having to re-render the entire view.
-    //* Checking the result data :
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderError();
 
     this._data = data;
     const newMarkup = this._generateMarkup();
