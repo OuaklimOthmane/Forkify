@@ -387,7 +387,7 @@ body {
 }
 
 .preview__link--active {
-  background-color: #fab788;
+  background-color: #fab788 !important;
 }
 
 .preview__fig {
